@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 public class MainGame {
 
     private static Level level;
-    static boolean gameIsOver = false;
+    private static boolean gameIsOver = false;
 
     private static int points;
     private static int pointsPerRightAnswer = 1;
@@ -18,7 +18,7 @@ public class MainGame {
 
     public static void main(String[] args) {
         startGame();
-        while (gameIsOver == false) {
+        while (!gameIsOver) {
             playGame();
         }
     }
@@ -53,10 +53,7 @@ public class MainGame {
     }
 
     private static boolean checkAnswer(int input, int correctAnswer) {
-        if (input == correctAnswer) {
-            return true;
-        }
-        return false;
+        return input == correctAnswer;
     }
 
     private static void handleCorrectInput() {
@@ -65,7 +62,7 @@ public class MainGame {
     }
 
     private static void handleWrongInput() {
-        System.out.println("████ FALSCH!! ████L█O█S█E█R████");
+        System.out.println("██████ FALSCH!! ██████");
         System.out.println("Die richtige Antwort ist: " + level.getDecimalNumber().getValue());
         updatePoints(pointsPerWrongAnswer);
         checkGameOver();
