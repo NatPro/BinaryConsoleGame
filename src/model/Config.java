@@ -20,4 +20,5 @@ public class Config {
     public static final String MESSAGE_GAME_OVER = "Du hast verloren!";
     public static final String MESSAGE_COUNT_POINTS = "Dein Punktestand: " + REPLACE_MARKER + " Punkte.";
     public static final String MESSAGE_COUNT_POINT = "Dein Punktestand: " + REPLACE_MARKER + " Punkt.";
+    public static final String MESSAGE_INVALID_INPUT = "Das war keine Zahl, bitte noch mal eingeben.";
 }

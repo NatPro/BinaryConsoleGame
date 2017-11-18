@@ -32,25 +32,29 @@ public class InputHandler {
         }
     }
 
-    private void convertNumber(String input) {
-        try {
-            answer = Integer.parseInt(input);
-        } catch (NumberFormatException nfe) {
-            System.err.println("Das ist keine Zahl. Bitte versuche es nochmal");
-            validInput = false;
-        }
-    }
-
     private void checkQuit(String input) {
         wantsToQuitGame = input.equals("x") || input.equals("X");
     }
 
-    public int getAnswer() {
-        return answer;
+    private void convertNumber(String input) {
+        try {
+            answer = Integer.parseInt(input);
+            validInput = true;
+        } catch (NumberFormatException nfe) {
+            validInput = false;
+            printError();
+        }
+    }
+
+    private void printError() {
+        System.out.println(Config.MESSAGE_INVALID_INPUT);
     }
 
     public boolean wantsToQuitGame() {
         return wantsToQuitGame;
     }
 
+    public int getAnswer() {
+        return answer;
+    }
 }
