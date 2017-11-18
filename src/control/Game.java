@@ -3,6 +3,7 @@ package control;
 import model.Config;
 import view.AsciiCardPrinter;
 import view.InputHandler;
+import view.MessagePrinter;
 
 public class Game {
 
@@ -11,15 +12,18 @@ public class Game {
     private boolean quit;
 
     public void start() {
-        while (isRunning()) {
+        while (isActive()) {
             nextRound();
         }
     }
 
-    private boolean isRunning() {
+    private boolean isActive() {
         return score >= 0 && !quit;
     }
 
+    /*
+    This method contains the main game logic.
+     */
     private void nextRound() {
         int difficulty = NumberCalculator.getDifficulty(score);
         int decimalNumber = NumberCalculator.getDecimal(difficulty);
@@ -46,37 +50,24 @@ public class Game {
     }
 
     private void handleCorrectAnswer() {
-        System.out.println(Config.MESSAGE_RIGHT_ANSWER);
+        MessagePrinter.printRight();
         updatePoints(Config.POINTS_RIGHT_ANSWER);
     }
 
     private void handleWrongAnswer(int decimalNumber) {
-        System.out.println(Config.MESSAGE_WRONG_ANSWER);
-        System.out.println(Config.MESSAGE_CORRECT_ANSWER + decimalNumber);
+        MessagePrinter.printWrong(decimalNumber);
         updatePoints(Config.POINTS_WRONG_ANSWER);
         checkGameOver();
     }
 
     private void checkGameOver() {
         if (score < 0) {
-            showGameOver();
+            MessagePrinter.showGameOver();
         }
-    }
-
-    private void showGameOver() {
-        System.out.println(Config.MESSAGE_GAME_OVER);
     }
 
     private void updatePoints(int earnedPoints) {
         score += earnedPoints;
-        showPoints();
-    }
-
-    private void showPoints() {
-        String pointMessage = Config.MESSAGE_COUNT_POINTS;
-        if (score == 1 || score == -1) {
-            pointMessage = Config.MESSAGE_COUNT_POINT;
-        }
-        System.out.println(pointMessage.replace(Config.REPLACE_MARKER, Integer.toString(score)));
+        MessagePrinter.showPoints(score);
     }
 }
