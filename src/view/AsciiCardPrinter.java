@@ -15,8 +15,7 @@ public class AsciiCardPrinter {
 
     private void printCardsToConsole(List<AsciiCard> cards) {
         for (int height = 0; height < AsciiCard.CARD_HEIGHT; height++) {
-            for (int i = 0; i < cards.size(); i++) {
-                AsciiCard card = cards.get(i);
+            for (AsciiCard card : cards) {
                 System.out.print(card.getRepresentationLine(height));
                 System.out.print("  ");
             }

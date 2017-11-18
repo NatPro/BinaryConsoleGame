@@ -8,12 +8,12 @@ import view.MessagePrinter;
 public class Game {
 
     private int score;
-    private AsciiCardPrinter cardPrinter = new AsciiCardPrinter();
+    private final AsciiCardPrinter cardPrinter = new AsciiCardPrinter();
     private boolean quit;
 
     public void start() {
         while (isActive()) {
-            nextRound();
+            playRound();
         }
     }
 
@@ -24,7 +24,7 @@ public class Game {
     /*
     This method contains the main game logic.
      */
-    private void nextRound() {
+    private void playRound() {
         int difficulty = NumberCalculator.getDifficulty(score);
         int decimalNumber = NumberCalculator.getDecimal(difficulty);
         String binaryNumber = NumberCalculator.getBinary(decimalNumber);

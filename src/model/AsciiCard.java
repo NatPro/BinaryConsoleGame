@@ -2,10 +2,11 @@ package model;
 
 public class AsciiCard {
 
-    private int value;
-    private String[] representation;
     public static final int CARD_HEIGHT = 10;
-    
+
+    private final int value;
+    private String[] representation;
+
     public AsciiCard(int zeroOrOne) {
         value = zeroOrOne;
         setRepresentation();
