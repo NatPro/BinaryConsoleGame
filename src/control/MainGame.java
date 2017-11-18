@@ -1,11 +1,17 @@
 package control;
 
-import view.AsciiCards;
+import model.AsciiCard;
+import model.Config;
+import view.AsciiCardPrinter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainGame {
+
+    private static ArrayList<AsciiCard> cards;
 
     private static Level level;
     private static boolean gameIsOver = false;
@@ -26,10 +32,11 @@ public class MainGame {
     private static void playGame() {
         level = new Level(points / pointsToNextLevel + 2);
         String binary = level.getDecimalNumber().getBinaryRepresentation();
-        AsciiCards ac = new AsciiCards();
-        ac.paintCardsToConsole(binary);
+        cards = CardGenerator.getAsciiCards(binary);
+        AsciiCardPrinter ac = new AsciiCardPrinter(cards);
+        ac.paintCardsToConsole();
 
-        System.out.println("Dezimalzahl: ");
+        System.out.println(Config.INPUT_PROMPT);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         try {
@@ -57,13 +64,13 @@ public class MainGame {
     }
 
     private static void handleCorrectInput() {
-        System.out.println("RICHTIG!!");
+        System.out.println(Config.MESSAGE_RIGHT_ANSWER);
         updatePoints(pointsPerRightAnswer);
     }
 
     private static void handleWrongInput() {
-        System.out.println("██████ FALSCH!! ██████");
-        System.out.println("Die richtige Antwort ist: " + level.getDecimalNumber().getValue());
+        System.out.println(Config.MESSAGE_WRONG_ANSWER);
+        System.out.println(Config.MESSAGE_CORRECT_ANSWER + level.getDecimalNumber().getValue());
         updatePoints(pointsPerWrongAnswer);
         checkGameOver();
     }
@@ -76,7 +83,7 @@ public class MainGame {
     }
 
     private static void showGameOver() {
-        System.out.println("Du hast verloren!!");
+        System.out.println(Config.MESSAGE_GAME_OVER);
     }
 
     private static void updatePoints(int earnedPoints) {
@@ -85,10 +92,10 @@ public class MainGame {
     }
 
     private static void showPoints() {
+        String pointMessage = Config.MESSAGE_COUNT_POINTS;
         if (points == 1 || points == -1) {
-            System.out.println("Du hast jetzt " + points + " Punkt.");
-            return;
+            pointMessage = Config.MESSAGE_COUNT_POINT;
         }
-        System.out.println("Du hast jetzt " + points + " Punkte.");
+        System.out.println(pointMessage.replace(Config.REPLACE_MARKER, points + ""));
     }
 }
