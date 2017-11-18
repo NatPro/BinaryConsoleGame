@@ -2,23 +2,21 @@ package model;
 
 public class AsciiCard {
 
+    private static final String TOP_LEFT_CORNER = "╔";
+    private static final String TOP_RIGHT_CORNER = "╗";
+    private static final String LOWER_LEFT_CORNER = "╚";
+    private static final String LOWER_RIGHT_CORNER = "╝";
+    private static final String FRAME_HORIZONTAL = "═";
+    private static final String FRAME_VERTICAL = "║";
+    private static final String FRAME_BORDER_MARGIN = "  ";
+    private static final String SIGN = "#";
+    private static final String NO_SIGN = " ";
+
     private int value;
-    private String sign;
-    private String borderMargin = "  ";
-    private String noSign = " ";
     private String[] representation;
-
-    private String topLeftCorner = "╔";
-    private String topRightCorner = "╗";
-    private String lowerLeftCorner = "╚";
-    private String lowerRightCorner = "╝";
-
-    private String frameHorizontal = "═";
-    private String frameVertical = "║";
-
+    
     public AsciiCard(int zeroOrOne) {
         value = zeroOrOne;
-        setSign();
         setRepresentation();
     }
 
@@ -28,56 +26,49 @@ public class AsciiCard {
             representZeroCard();
         } else {
             representOneCard();
-
         }
     }
-
-    private void setSign() {
-        sign = "#";
-        // might make different signs depending on the value
-        //sign = value == 1 ? "#" : "+";
-    }
-
+    
     private void representZeroCard() {
-        representation[0] = topCardFrame();   // "╔═══════════════╗"
-        representation[1] = emptyLine();      // "║             ║"
-        int zeroWidth = Config.CARD_WIDTH - 2 * frameVertical.length() - 2 * borderMargin.length();
-        int innerWidth = zeroWidth - 2 * sign.length();
-        representation[2] = frameVertical + borderMargin + loopStringNtimes(sign, zeroWidth) + borderMargin + frameVertical;
-        representation[3] = frameVertical + borderMargin + sign + loopStringNtimes(noSign, innerWidth) + sign + borderMargin + frameVertical;
-        representation[4] = frameVertical + borderMargin + sign + loopStringNtimes(noSign, innerWidth) + sign + borderMargin + frameVertical;
-        representation[5] = frameVertical + borderMargin + sign + loopStringNtimes(noSign, innerWidth) + sign + borderMargin + frameVertical;
-        representation[6] = frameVertical + borderMargin + sign + loopStringNtimes(noSign, innerWidth) + sign + borderMargin + frameVertical;
-        representation[7] = frameVertical + borderMargin + loopStringNtimes(sign, zeroWidth) + borderMargin + frameVertical;
-        representation[8] = emptyLine();      // "║             ║"
-        representation[9] = lowerCardFrame(); // "╚═══════════════╝"
+        int zeroWidth = Config.CARD_WIDTH - 2 * FRAME_VERTICAL.length() - 2 * FRAME_BORDER_MARGIN.length();
+        int innerWidth = zeroWidth - 2 * SIGN.length();
+        representation[0] = topCardFrame();                                                                                                                     // "╔═══════════════╗"
+        representation[1] = emptyLine();                                                                                                                        // "║             ║"
+        representation[2] = FRAME_VERTICAL + FRAME_BORDER_MARGIN + loopStringNtimes(SIGN, zeroWidth) + FRAME_BORDER_MARGIN + FRAME_VERTICAL;                    // "║  #########  ║"
+        representation[3] = FRAME_VERTICAL + FRAME_BORDER_MARGIN + SIGN + loopStringNtimes(NO_SIGN, innerWidth) + SIGN + FRAME_BORDER_MARGIN + FRAME_VERTICAL;  // "║  #       #  ║"
+        representation[4] = FRAME_VERTICAL + FRAME_BORDER_MARGIN + SIGN + loopStringNtimes(NO_SIGN, innerWidth) + SIGN + FRAME_BORDER_MARGIN + FRAME_VERTICAL;  // "║  #       #  ║"
+        representation[5] = FRAME_VERTICAL + FRAME_BORDER_MARGIN + SIGN + loopStringNtimes(NO_SIGN, innerWidth) + SIGN + FRAME_BORDER_MARGIN + FRAME_VERTICAL;  // "║  #       #  ║"
+        representation[6] = FRAME_VERTICAL + FRAME_BORDER_MARGIN + SIGN + loopStringNtimes(NO_SIGN, innerWidth) + SIGN + FRAME_BORDER_MARGIN + FRAME_VERTICAL;  // "║  #       #  ║"
+        representation[7] = FRAME_VERTICAL + FRAME_BORDER_MARGIN + loopStringNtimes(SIGN, zeroWidth) + FRAME_BORDER_MARGIN + FRAME_VERTICAL;                    // "║  #########  ║"
+        representation[8] = emptyLine();                                                                                                                        // "║             ║"
+        representation[9] = lowerCardFrame();                                                                                                                   // "╚═══════════════╝"
     }
 
     private void representOneCard() {
-        representation[0] = topCardFrame();   // "╔═══════════════╗"
-        representation[1] = emptyLine();      // "║             ║"
         // TODO if WIdth is even, than no +1 neccessary...
         int visualHalf = (Config.CARD_WIDTH - 4) / 2 + 1;
-        representation[2] = frameVertical + loopStringNtimes(noSign, visualHalf) + sign + loopStringNtimes(noSign, visualHalf) + frameVertical;
-        representation[3] = frameVertical + loopStringNtimes(noSign, visualHalf) + sign + loopStringNtimes(noSign, visualHalf) + frameVertical;
-        representation[4] = frameVertical + loopStringNtimes(noSign, visualHalf) + sign + loopStringNtimes(noSign, visualHalf) + frameVertical;
-        representation[5] = frameVertical + loopStringNtimes(noSign, visualHalf) + sign + loopStringNtimes(noSign, visualHalf) + frameVertical;
-        representation[6] = frameVertical + loopStringNtimes(noSign, visualHalf) + sign + loopStringNtimes(noSign, visualHalf) + frameVertical;
-        representation[7] = frameVertical + loopStringNtimes(noSign, visualHalf) + sign + loopStringNtimes(noSign, visualHalf) + frameVertical;
-        representation[8] = emptyLine();      // "║             ║"
-        representation[9] = lowerCardFrame(); // "╚═══════════════╝"
+        representation[0] = topCardFrame();                                                                                                          // "╔═══════════════╗"
+        representation[1] = emptyLine();                                                                                                             // "║             ║"
+        representation[2] = FRAME_VERTICAL + loopStringNtimes(NO_SIGN, visualHalf) + SIGN + loopStringNtimes(NO_SIGN, visualHalf) + FRAME_VERTICAL;  // "║      #      ║"
+        representation[3] = FRAME_VERTICAL + loopStringNtimes(NO_SIGN, visualHalf) + SIGN + loopStringNtimes(NO_SIGN, visualHalf) + FRAME_VERTICAL;  // "║      #      ║"
+        representation[4] = FRAME_VERTICAL + loopStringNtimes(NO_SIGN, visualHalf) + SIGN + loopStringNtimes(NO_SIGN, visualHalf) + FRAME_VERTICAL;  // "║      #      ║"
+        representation[5] = FRAME_VERTICAL + loopStringNtimes(NO_SIGN, visualHalf) + SIGN + loopStringNtimes(NO_SIGN, visualHalf) + FRAME_VERTICAL;  // "║      #      ║"
+        representation[6] = FRAME_VERTICAL + loopStringNtimes(NO_SIGN, visualHalf) + SIGN + loopStringNtimes(NO_SIGN, visualHalf) + FRAME_VERTICAL;  // "║      #      ║"
+        representation[7] = FRAME_VERTICAL + loopStringNtimes(NO_SIGN, visualHalf) + SIGN + loopStringNtimes(NO_SIGN, visualHalf) + FRAME_VERTICAL;  // "║      #      ║"
+        representation[8] = emptyLine();                                                                                                             // "║             ║"
+        representation[9] = lowerCardFrame();                                                                                                        // "╚═══════════════╝"
     }
 
     private String topCardFrame() {
-        return topLeftCorner + loopStringNtimes(frameHorizontal, Config.CARD_WIDTH - 2) + topRightCorner;
+        return TOP_LEFT_CORNER + loopStringNtimes(FRAME_HORIZONTAL, Config.CARD_WIDTH - 2) + TOP_RIGHT_CORNER;
     }
 
     private String emptyLine() {
-        return frameVertical + loopStringNtimes(noSign, Config.CARD_WIDTH - 2) + frameVertical;
+        return FRAME_VERTICAL + loopStringNtimes(NO_SIGN, Config.CARD_WIDTH - 2) + FRAME_VERTICAL;
     }
 
     private String lowerCardFrame() {
-        return lowerLeftCorner + loopStringNtimes(frameHorizontal, Config.CARD_WIDTH - 2) + lowerRightCorner;
+        return LOWER_LEFT_CORNER + loopStringNtimes(FRAME_HORIZONTAL, Config.CARD_WIDTH - 2) + LOWER_RIGHT_CORNER;
     }
 
     private String loopStringNtimes(String signToLoop, int times) {
