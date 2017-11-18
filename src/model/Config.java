@@ -4,7 +4,6 @@ public class Config {
 
     public static final int MAX_NUMBER_OF_CARDS = 6;
     public static final int CARD_HEIGHT = 10;
-    public static final int CARD_WIDTH = 15;
 
     public static final int POINTS_RIGHT_ANSWER = 1;
     public static final int POINTS_WRONG_ANSWER = -1;
