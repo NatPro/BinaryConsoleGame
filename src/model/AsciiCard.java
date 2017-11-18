@@ -4,6 +4,7 @@ public class AsciiCard {
 
     private int value;
     private String[] representation;
+    public static final int CARD_HEIGHT = 10;
     
     public AsciiCard(int zeroOrOne) {
         value = zeroOrOne;
@@ -11,7 +12,7 @@ public class AsciiCard {
     }
 
     private void setRepresentation() {
-        representation = new String[Config.CARD_HEIGHT];
+        representation = new String[CARD_HEIGHT];
         if (value == 0) {
             representZeroCard();
         } else {

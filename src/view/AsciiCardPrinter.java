@@ -3,7 +3,6 @@ package view;
 import control.CardGenerator;
 import model.AsciiCard;
 import model.Config;
-
 import java.util.List;
 
 public class AsciiCardPrinter {
@@ -13,10 +12,12 @@ public class AsciiCardPrinter {
         System.out.println(Config.MESSAGE_BINARY);
         printCardsToConsole(cards);
     }
+
     private void printCardsToConsole(List<AsciiCard> cards) {
-        for (int height = 0; height < Config.CARD_HEIGHT; height++) {
+        for (int height = 0; height < AsciiCard.CARD_HEIGHT; height++) {
             for (int i = 0; i < cards.size(); i++) {
-                System.out.print(cards.get(i).getRepresentationLine(height));
+                AsciiCard card = cards.get(i);
+                System.out.print(card.getRepresentationLine(height));
                 System.out.print("  ");
             }
             System.out.println("");
