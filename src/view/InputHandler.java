@@ -16,7 +16,7 @@ public class InputHandler {
             System.out.println(Config.MESSAGE_QUIT);
             System.out.println(Config.MESSAGE_DECIMAL);
             readInputFromConsole();
-        } while (!validInput);
+        } while (!validInput && !wantsToQuitGame);
     }
 
     private void readInputFromConsole() {
