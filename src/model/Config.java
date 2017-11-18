@@ -2,6 +2,10 @@ package model;
 
 public class Config {
 
+    private Config() {
+        // private constructor to hide implicit public one
+    }
+
     public static final int MAX_NUMBER_OF_CARDS = 6;
     public static final int CARD_HEIGHT = 10;
 

@@ -77,6 +77,6 @@ public class Game {
         if (score == 1 || score == -1) {
             pointMessage = Config.MESSAGE_COUNT_POINT;
         }
-        System.out.println(pointMessage.replace(Config.REPLACE_MARKER, score + ""));
+        System.out.println(pointMessage.replace(Config.REPLACE_MARKER, Integer.toString(score)));
     }
 }

@@ -5,6 +5,10 @@ import java.util.Random;
 
 public class NumberCalculator {
 
+    private NumberCalculator() {
+        // private constructor to hide implicit public one
+    }
+
     public static int getDifficulty(int score) {
         return score / Config.POINTS_TO_NEXT_LEVEL + 2;
     }
