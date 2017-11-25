@@ -8,7 +8,7 @@
 
     <target name="compile">
         <mkdir dir="outAnt/classes"/>
-        <javac srcdir="encoded" destdir="outAnt/classes" includeantruntime="false"/>
+        <javac srcdir="src" destdir="outAnt/classes" includeantruntime="false" encoding="utf-8"/>
     </target>
 
     <target name="jar">
