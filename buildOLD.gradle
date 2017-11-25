@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6-rc1"
+    }
+}
+
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "BinaryConsoleGame"
+        property "sonar.projectKey", "de.papiercomputer.binary"
+        property "sonar.host.url", "http://127.0.0.1:9000"
+        property "sonar.language", "java"
+        property "sonar.sources", "src/"
+    }
+}
+
+
+
+defaultTasks 'clean', 'run'
+
+task clean {
+    doLast {
+        println 'Default Cleaning!'
+    }
+}
+
+task run {
+    doLast {
+        println 'Default Running!'
+    }
+}
+
+task other {
+    doLast {
+        println "I'm not a default task!"
+    }
+}

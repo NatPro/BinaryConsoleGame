@@ -23,7 +23,7 @@ public class InputHandler {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             String input = br.readLine();
-            checkQuit(input);
+            if (input != null)   checkQuit(input);
             if (!wantsToQuitGame) {
                 convertNumber(input);
             }

@@ -10,8 +10,27 @@
         <pathelement location="${main.build.dir}"/>
     </path>
 
-    <target name="test-card-height" >
-        <!--junit - printsummary="on" haltonfailure="yes" fork="true">
+
+    <target name="compile">
+        <mkdir dir="${main.build.dir}"/>
+        <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false" encoding="utf-8"/>
+    </target>
+
+    <target name="test-compile" depends="compile">
+        <mkdir dir="${test.build.dir}"/>
+        <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="false" encoding="utf-8">
+            <!--classpath refid="classpath.test"/-->
+            <classpath>
+                <pathelement location="${project.class.path}"/>
+                <pathelement location="${src.test}"/>
+                <pathelement path="${java.class.path}"/>
+                <pathelement location="libs/junit-4.12.jar" />
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="test" depends="test-compile">
+        <junit printsummary="on" haltonfailure="yes" fork="true">
             <classpath>
                 <path refid="classpath.test"/>
                 <pathelement location="${test.build.dir}"/>
@@ -20,17 +39,26 @@
             <batchtest>
                 <fileset dir="${test.src.dir}" includes="**/*Test.java" />
             </batchtest>
-        </junit-->
+        </junit>
+    </target>
 
+
+
+
+
+
+
+
+    <!--target name="test-card-height" >
         <junit printsummary="withOutAndErr" haltonfailure="yes">
-
+            <jvmarg value="-Duser.dir=src/test"/>
             <classpath>
                 <pathelement location="${project.class.path}"/>
                 <pathelement location="${src.test}"/>
                 <pathelement path="${java.class.path}"/>
                 <pathelement location="libs/junit-4.12.jar" />
             </classpath>
-            <test name="model.AsciiCardTest"
+            <test name="control.AsciiCardTest"
                   haltonfailure="no" outfile="result">
                 <formatter type="plain"/>
                 <formatter type="xml"/>
@@ -63,9 +91,9 @@
             <classpath>
                 <pathelement path="out/production/BinaryConsoleGame"/>
             </classpath>
-        </java>
+        </java-->
         <!--java jar="outAnt/jar/BinaryConsoleGame.jar" fork="true"/-->
-    </target>
+    <!--/target-->
 
 </project>
 

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BinaryConsoleGame.iml" filepath="$PROJECT_DIR$/BinaryConsoleGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BinaryConsoleGame2.iml" filepath="$PROJECT_DIR$/.idea/modules/BinaryConsoleGame2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BinaryConsoleGame2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BinaryConsoleGame2_main.iml" group="BinaryConsoleGame2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BinaryConsoleGame2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BinaryConsoleGame2_test.iml" group="BinaryConsoleGame2" />
     </modules>
   </component>
 </project>
