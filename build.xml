@@ -13,7 +13,7 @@
 
     <target name="jar">
         <mkdir dir="outAntJenkins/jar"/>
-        <jar destfile="outAnt/jar/BinaryConsoleGame.jar" basedir="outAntJenkins/classes">
+        <jar destfile="outAntJenkins/jar/BinaryConsoleGame.jar" basedir="outAntJenkins/classes">
             <manifest>
                 <attribute name="Main-Class" value="control.Main"/>
             </manifest>
