@@ -12,8 +12,8 @@
     </target>
 
     <target name="jar">
-        <mkdir dir="outAnt/jar"/>
-        <jar destfile="outAnt/jar/BinaryConsoleGame.jar" basedir="outAnt/classes">
+        <mkdir dir="outAntJenkins/jar"/>
+        <jar destfile="outAnt/jar/BinaryConsoleGame.jar" basedir="outAntJenkins/classes">
             <manifest>
                 <attribute name="Main-Class" value="control.Main"/>
             </manifest>
@@ -21,7 +21,7 @@
     </target>
 
     <target name="run">
-        <java jar="outAnt/jar/BinaryConsoleGame.jar" fork="true"/>
+        <java jar="outAntJenkins/jar/BinaryConsoleGame.jar" fork="true"/>
     </target>
 
 </project>
