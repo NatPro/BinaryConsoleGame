@@ -1,0 +1,27 @@
+<project>
+
+    <target name="encode" >
+        <native2ascii encoding="utf-8" src="src"
+                      dest="encoded"
+                      />
+    </target>
+
+    <target name="compile">
+        <mkdir dir="outAnt/classes"/>
+        <javac srcdir="src" destdir="outAntJenkins/classes" includeantruntime="false" encoding="utf-8"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="outAntJenkins/jar"/>
+        <jar destfile="outAntJenkins/jar/BinaryConsoleGame.jar" basedir="outAntJenkins/classes">
+            <manifest>
+                <attribute name="Main-Class" value="control.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="outAntJenkins/jar/BinaryConsoleGame.jar" fork="true"/>
+    </target>
+
+</project>
